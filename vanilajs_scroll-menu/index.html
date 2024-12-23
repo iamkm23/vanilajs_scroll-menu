@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scrolling Container</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      .wrapper {
+        position: relative;
+        width: 1200px;
+        max-width: 90vw;
+        overflow: hidden;
+      }
+
+      section {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin: auto;
+        padding: 20px;
+        width: 100%;
+        overflow-x: auto;
+        position: relative;
+        scrollbar-width: none;
+      }
+
+      section::-webkit-scrollbar {
+        display: none;
+      }
+
+      .photo-card {
+        min-width: 200px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+        background: white;
+      }
+
+      .photo-card img {
+        width: 200px;
+        height: 150px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .photo-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .gradient_left {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100%;
+        background: linear-gradient(to right, white, transparent);
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      .gradient_right {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100px;
+        height: 100%;
+        background: linear-gradient(to left, white, transparent);
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      .controls {
+        display: flex;
+        gap: 12px;
+      }
+
+      .control-button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .control-button:hover {
+        background-color: #0056b3;
+      }
+
+      .control-button:active {
+        transform: translateY(1px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="container">
+        <div class="photo-card">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1667371526268-7f0872b694f8?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Photo 1"
+          />
+        </div>
+        <div class="photo-card">
+          <img
+            src="https://images.unsplash.com/photo-1538882227087-98290b0b7e58?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Photo 2"
+          />
+        </div>
+        <div class="photo-card">
+          <img
+            src="https://media.istockphoto.com/id/1641515626/photo/magnifier-focus-to-smile-face-emoticon-with-light-bulb-smart-idea-creativity-and-solution.jpg?s=612x612&w=is&k=20&c=OeP6z3PpA4N6Owl-Vy84dDmSkZFf1FlEalB3Xuvf5HU="
+            alt="Photo 3"
+          />
+        </div>
+        <div class="photo-card">
+          <img
+            src="https://images.unsplash.com/photo-1698764437536-5007c772a593?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Photo 4"
+          />
+        </div>
+        <div class="photo-card">
+          <img
+            src="https://images.unsplash.com/photo-1662403655546-2610bdbc34dc?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Photo 5"
+          />
+        </div>
+        <div class="photo-card">
+          <img
+            src="https://images.unsplash.com/photo-1562112446-297a0d33fdd3?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Photo 6"
+          />
+        </div>
+        <div class="photo-card">
+          <img src="https://plus.unsplash.com/premium_vector-1731743326340-df18dce1e1c8?q=80&w=2456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Photo 7" />
+        </div>
+        <div class="photo-card">
+          <img src="https://plus.unsplash.com/premium_vector-1731743342509-825a739cbea9?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3DF" alt="Photo 8" />
+        </div>
+        <div class="photo-card">
+          <img src="https://plus.unsplash.com/premium_photo-1729595323646-2165b5098326?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Photo 9" />
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1734312796276-e95bc70427ac?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Photo 10" />
+        </div>
+      </section>
+      <div class="gradient_left"></div>
+      <div class="gradient_right"></div>
+    </div>
+    <div class="controls">
+      <button class="control-button" onclick="handleClick('left')">←</button>
+      <button class="control-button" onclick="handleClick('right')">→</button>
+    </div>
+
+    <script>
+      function handleClick(direction) {
+        const container = document.querySelector(".container");
+        const scrollAmount = 300;
+
+        if (direction === "left") {
+          container.scrollTo({
+            left: container.scrollLeft - scrollAmount,
+            behavior: "smooth",
+          });
+        } else if (direction === "right") {
+          container.scrollTo({
+            left: container.scrollLeft + scrollAmount,
+            behavior: "smooth",
+          });
+        }
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") {
+          handleClick("left");
+        } else if (e.key === "ArrowRight") {
+          handleClick("right");
+        }
+      });
+    </script>
+  </body>
+</html>
